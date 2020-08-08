@@ -3,7 +3,7 @@
     <h3>Favourite Jokes</h3>
     <ol>
         <li v-for="item in favouritesArr.slice(0, 10)" :key="item"> 
-          <p>{{ item }}</p>
+          <p v-html="item">{{ item }}</p>
           <button @click="removeItem(item)">remove</button>
         </li>
     </ol>
@@ -26,8 +26,6 @@ export default {
     removeItem(item)
     {
       this.favouritesArr.splice(item, 1);
-
-      // console.log(this.favouritesArr);
     }
   }
 }
