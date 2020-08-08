@@ -1,29 +1,30 @@
 <template>
-  <div class="jokes-wrapper">
+  <div class="list">
+    <h3>Jokes</h3>
     <ul>
         <li v-for="item in data" :key="item.id"> 
           <p>{{ item.joke }}</p>
-          <!-- <button @click="addToFavourites">Favourite</button> -->
+          <button @click="addToFavourites(item.joke)">Favourite</button>
         </li>
     </ul>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
 
 <script>
 export default {
   props: {
-    data: Array 
+    data: Array
   },
 
   methods:
   {
-    addToFavourites()
+    addToFavourites(jokeString) 
     {
-      console.log(this.data.id);
+      this.$store.state.favouritedJoke.push(jokeString);
     }
   }
 }

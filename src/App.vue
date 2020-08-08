@@ -1,30 +1,32 @@
 <template>
   <div id="app">
+    <header>
       <h1>Chuck Norris Joke</h1>
       <button @click="fetchData">Fetch Jokes</button> 
-      
-      <jokes-list :data="this.data"></jokes-list>
+    </header>
+
+    <div class="lists-wrapper">
+      <jokes-list :data="data"></jokes-list>
+      <favourites-list></favourites-list>
+    </div>
   </div>
 </template>
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+<style lang="scss">
+  @import './styles/app.scss';
 </style>
 
 <script>
 
 import JokesList from '@/components/jokesList'; 
+import FavouritesList from '@/components/favouriteList'; 
+
 export default {
   name: 'App',
 
   components: {
-    'jokes-list': JokesList
+    'jokes-list': JokesList,
+    'favourites-list': FavouritesList
   },
 
   data ()
@@ -42,13 +44,6 @@ export default {
       .then((results) =>{
         this.data = results.data.value;
       })
-    },
-
-    addToFavourites()
-    {
-      var id = this.data.id;
-      console.log(id);
-
     }
   }
 
