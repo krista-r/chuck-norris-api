@@ -1,12 +1,9 @@
 <template>
   <div id="app">
       <h1>Chuck Norris Joke</h1>
-      <button @click="fetchData">Fetch Joke</button> 
-      <ul>
-        <li v-for="item in data" :key="item.id"> 
-          <p>{{ item.joke }}</p>
-        </li>
-      </ul>
+      <button @click="fetchData">Fetch Jokes</button> 
+      
+      <jokes-list :data="this.data"></jokes-list>
   </div>
 </template>
 <style>
@@ -22,9 +19,13 @@
 
 <script>
 
-
+import JokesList from '@/components/jokesList'; 
 export default {
   name: 'App',
+
+  components: {
+    'jokes-list': JokesList
+  },
 
   data ()
   {
@@ -36,14 +37,18 @@ export default {
   methods: {
     fetchData()
     {
-      // console.log('fetching');
       const baseURL = 'http://api.icndb.com/jokes/random/10'
       this.$http.get(baseURL)
       .then((results) =>{
         this.data = results.data.value;
-
-        // console.log( this.data );
       })
+    },
+
+    addToFavourites()
+    {
+      var id = this.data.id;
+      console.log(id);
+
     }
   }
 
