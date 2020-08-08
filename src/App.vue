@@ -1,21 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <h1>Hello</h1>
+      <button @click="fetchData">Fetch Joke</button> 
   </div>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -26,3 +14,34 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<script>
+
+
+export default {
+  name: 'App',
+
+  data ()
+  {
+    return {
+      data: []
+    }
+  },
+
+  methods: {
+    fetchData()
+    {
+      // console.log('fetching');
+      const baseURL = 'http://api.icndb.com/jokes/random/10'
+      this.$http.get(baseURL)
+      .then((results) =>{
+        this.data = results.data.value;
+
+        // console.log( this.data );
+      })
+    }
+  }
+
+}
+</script>
+
