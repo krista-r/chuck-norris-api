@@ -4,7 +4,7 @@
     <ul>
         <li v-for="item in data" :key="item.id"> 
           <p v-html="item.joke">{{ item.joke }}</p>
-          <button @click="addToFavourites(item.joke)">Favourite</button>
+          <button @click="addToFavourites(item.joke)">&hearts;</button>
         </li>
     </ul>
   </div>

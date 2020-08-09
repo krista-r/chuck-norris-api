@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <header>
-      <h1>Chuck Norris Joke</h1>
-      <button @click="fetchData(10)">Fetch Jokes</button>
+      <h1>Chuck Norris Joke Generator</h1>
+      <div class="button-wrapper">
+        <button @click="fetchData(10)">FETCH JOKES</button>
      
-      <button @click="fetchRandom">
-        <span v-if="!currentState">Off</span>
-        <span v-else>On</span>
-      </button> 
+        <button :class="{ active:currentState }" @click="fetchRandom">
+          <span v-if="!currentState">RANDOMIZE OFF</span>
+          <span v-else>RANDOMIZE ON</span>
+        </button> 
+      </div>
     </header>
 
     <div class="lists-wrapper">
@@ -19,6 +21,7 @@
 
 <style lang="scss">
   @import './styles/app.scss';
+
 </style>
 
 <script>

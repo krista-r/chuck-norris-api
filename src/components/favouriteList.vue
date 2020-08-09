@@ -1,12 +1,12 @@
 <template>
   <div class="list">
     <h3>Favourite Jokes</h3>
-    <ol>
-        <li v-for="item in favouritesArr.slice(0, 10)" :key="item"> 
+    <ul>
+        <li v-for="(item, index) in favourites.slice(0, 10)" :key="index"> 
           <p v-html="item">{{ item }}</p>
-          <button @click="removeItem(item)">remove</button>
+          <button @click="removeItem(item)">&#10006;</button>
         </li>
-    </ol>
+    </ul>
   </div>
 </template>
 
@@ -16,16 +16,30 @@
 
 <script>
 export default {
-  computed: {
-    favouritesArr() {
-      return this.$store.state.favouritedJoke;
+
+  data()
+  {
+    return{
+      favourites: [],
+      favs: []
     }
   },
+
+  mounted() 
+  {
+    this.favourites = this.$store.state.favouritedJoke;
+  },
+
+  // computed: {
+  //   favouritesArr() {
+  //     return this.$store.state.favouritedJoke;
+  //   }
+  // },
 
   methods: {
     removeItem(item)
     {
-      this.favouritesArr.splice(item, 1);
+      this.favourites.splice(item, 1);
     }
   }
 }
